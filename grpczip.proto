@@ -2,14 +2,21 @@ syntax = "proto3";
 option go_package = "github.com/sago35/grpczip";
 package grpczip;
 
+message File {
+    string Filename = 1;
+    bytes Data = 2;
+}
+
 message Request {
-  string id = 1;
+  string Id = 1;
+  repeated File Files = 2;
 }
 
 message Response {
-  string id = 1;
+  string Id = 1;
+  File Zipfile = 2;
 }
 
 service Grpczip {
-  rpc Read (Request) returns (Response) {}
+  rpc Grpczip (Request) returns (Response) {}
 }
